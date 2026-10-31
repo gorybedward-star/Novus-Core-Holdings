@@ -7,7 +7,10 @@
 //        Upserts the contact, adds tags and a note, and (if GHL_PIPELINE_ID + GHL_PIPELINE_STAGE_ID
 //        are set) opens an opportunity in your "New Lead" pipeline stage.
 //   2. Webhook mode: GHL_WEBHOOK_URL (a GoHighLevel workflow "Inbound Webhook" trigger URL)
-//   3. Development mode: nothing configured. Responds 503 NOT_CONFIGURED and the page says so.
+//   3. Google Sheets mode (free, no CRM yet): SHEETS_WEBHOOK_URL + SHEETS_WEBHOOK_SECRET
+//        Posts to a Google Apps Script web app that appends a row to a Sheet and emails the owner.
+//        See docs/GOOGLE_SHEETS.md. Used only when GoHighLevel isn't configured.
+//   4. Development mode: nothing configured. Responds 503 NOT_CONFIGURED and the page says so.
 //      It never pretends the lead was received.
 
 import type { VercelRequest, VercelResponse } from "@vercel/node";
@@ -186,6 +189,30 @@ async function sendViaWebhook(lead: Lead, ip: string) {
   if (!res.ok) throw new Error(`GHL webhook ${res.status}`);
 }
 
+async function sendViaSheets(lead: Lead, ip: string) {
+  const res = await fetch(process.env.SHEETS_WEBHOOK_URL!, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" }, // Apps Script reads the raw body
+    redirect: "follow",
+    body: JSON.stringify({
+      secret: process.env.SHEETS_WEBHOOK_SECRET,
+      submittedAt: new Date().toISOString(),
+      ...lead,
+      utm: Object.entries(lead.utm).map(([k, v]) => `${k}=${v}`).join("&"),
+      tags: tagsFor(lead).join(", "),
+      ip,
+    }),
+  });
+  const text = await res.text();
+  let data: { ok?: boolean; error?: string } = {};
+  try {
+    data = JSON.parse(text);
+  } catch {
+    /* Apps Script returns HTML on errors */
+  }
+  if (!res.ok || data.ok !== true) throw new Error(`Sheets webhook ${res.status}: ${data.error || text.slice(0, 200)}`);
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Cache-Control", "no-store");
 
@@ -218,7 +245,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const apiMode = !!(process.env.GHL_PRIVATE_TOKEN && process.env.GHL_LOCATION_ID);
   const webhookMode = !!process.env.GHL_WEBHOOK_URL;
-  if (!apiMode && !webhookMode) {
+  const sheetsMode = !!(process.env.SHEETS_WEBHOOK_URL && process.env.SHEETS_WEBHOOK_SECRET);
+  if (!apiMode && !webhookMode && !sheetsMode) {
     console.info("[lead] DEVELOPMENT MODE: GoHighLevel is not configured; lead was NOT stored.", {
       industry: lead.industry,
       city: lead.city,
@@ -228,7 +256,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     if (apiMode) await sendViaApi(lead, ip);
-    else await sendViaWebhook(lead, ip);
+    else if (webhookMode) await sendViaWebhook(lead, ip);
+    else await sendViaSheets(lead, ip);
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error("[lead] delivery failed", err);
