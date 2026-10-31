@@ -35,10 +35,14 @@ export function Scorecard() {
             Free Local Business Growth Scorecard
           </p>
           <h2 className="mt-3 font-display text-[2.1rem] font-extrabold leading-[1.02] tracking-[-0.02em] [text-wrap:balance] sm:text-[2.9rem]">
-            Find out where your business could be missing opportunities.
+            Discover where your business may be missing opportunities.
           </h2>
 
-          <h3 className="mt-10 text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-white/75">We review four areas</h3>
+          <p className="mt-4 max-w-lg text-[1.05rem] leading-relaxed text-white/85">
+            Get a free one-page assessment of your business with three prioritized recommendations you can act on, whether or not you work with us.
+          </p>
+
+          <h3 className="mt-9 text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-white/75">Your assessment covers</h3>
           <ol className="mt-4 grid gap-2.5 sm:grid-cols-2">
             {SCORECARD_AREAS.map((a, i) => (
               <li key={a} className="flex gap-3 rounded-lg bg-white/10 p-3.5 text-[0.95rem] font-medium leading-snug">

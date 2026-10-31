@@ -10,7 +10,7 @@ export function System() {
       <Container>
         <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
           <div>
-            <Eyebrow tone="dark">The Local Growth Engine</Eyebrow>
+            <Eyebrow tone="dark">How Local Growth Engine works</Eyebrow>
             <h2 className="mt-3 font-display text-[2.2rem] font-extrabold uppercase leading-[0.98] tracking-[-0.01em] [text-wrap:balance] sm:text-[3.2rem]" style={{ fontStretch: "112%" }}>
               More visibility.<br />
               <span className="text-signal">Less missed business.</span>

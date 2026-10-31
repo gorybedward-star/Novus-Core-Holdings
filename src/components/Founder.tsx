@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import { BRAND, TESTIMONIALS } from "../content";
+import { track } from "../lib/analytics";
 import { Container, Eyebrow } from "./ui";
 
 export function Founder() {
@@ -13,28 +14,36 @@ export function Founder() {
             <div aria-hidden className="grid h-20 w-20 shrink-0 place-items-center rounded-xl bg-char font-display text-[1.6rem] font-black text-white" style={{ fontStretch: "115%" }}>
               GB
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-display text-[1.5rem] font-extrabold leading-tight text-ink">{BRAND.founder}</p>
-              <p className="text-[0.95rem] text-muted">Founder | Novus Core Holdings</p>
-              <p className="text-[0.85rem] text-muted">{BRAND.legalEntity}</p>
+              <p className="text-[0.95rem] text-muted">Founder, {BRAND.legalEntity}</p>
+              <p className="mt-1 flex flex-wrap items-center gap-x-1.5 text-[0.9rem] text-muted">
+                Email:
+                <a
+                  href={`mailto:${BRAND.email}`}
+                  onClick={() => track("email_click", { location: "founder" })}
+                  className="break-all font-semibold text-volt underline-offset-2 hover:underline"
+                >
+                  {BRAND.email}
+                </a>
+              </p>
             </div>
           </div>
         </div>
 
         <div className="min-w-0">
-          <blockquote className="font-display text-[1.45rem] font-bold leading-[1.3] tracking-[-0.01em] text-ink [text-wrap:pretty] sm:text-[1.75rem]">
-            “Novus Core Holdings was built around a straightforward belief: small service businesses deserve practical,
-            measurable growth support without the complexity of managing multiple agencies and disconnected tools.”
-          </blockquote>
+          <p className="font-display text-[1.45rem] font-bold leading-[1.3] tracking-[-0.01em] text-ink [text-wrap:pretty] sm:text-[1.75rem]">
+            Novus Core Holdings helps service businesses strengthen their visibility, customer follow-up, and growth operations
+            through practical, measurable systems.
+          </p>
           <div className="mt-6 grid max-w-[40rem] gap-4 text-[1.02rem] leading-relaxed text-muted">
             <p>
-              You'll work with one accountable partner who handles visibility, follow-up, and reporting together, and who
-              focuses on {BRAND.region} service trade businesses instead of trying to serve everyone.
+              Local Growth Engine is how we do it: one accountable partner handling your online visibility, inquiry follow-up,
+              and monthly reporting together, focused on {BRAND.region} service trades instead of trying to serve everyone.
             </p>
             <p>
-              Novus Core Holdings is a new company, so you won't find a wall of borrowed logos here. Instead, every
-              relationship starts with the free scorecard. You see the quality of our thinking on your own business before
-              you spend anything.
+              We're a new company, so you won't find borrowed logos or testimonials here. Instead, every relationship starts
+              with the free Growth Scorecard, so you can judge our work on your own business before you spend anything.
             </p>
           </div>
         </div>

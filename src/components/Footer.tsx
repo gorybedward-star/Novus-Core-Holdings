@@ -2,7 +2,7 @@ import { BRAND } from "../content";
 import { Container, Wordmark } from "./ui";
 
 export function Footer({ onHome = true }: { onHome?: boolean }) {
-  const base = onHome ? "" : "index.html";
+  const base = onHome ? "" : "./";
   const links = [
     { href: `${base}#services`, label: "Services" },
     { href: `${base}#how-it-works`, label: "How It Works" },
@@ -15,10 +15,13 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
       <Container className="grid gap-10 md:grid-cols-[1.3fr_1fr]">
         <div className="min-w-0">
           <Wordmark tone="dark" />
-          <p className="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-char-muted">{BRAND.system} · {BRAND.tagline}</p>
+          <p className="mt-4 text-[0.92rem] text-white/85">
+            Introducing <span className="font-semibold text-signal">{BRAND.system}</span>
+          </p>
+          <p className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-char-muted">{BRAND.tagline}</p>
           <dl className="mt-6 grid gap-1.5 text-[0.9rem] text-char-muted">
                         <div><dt className="inline">Founder: </dt><dd className="inline text-white/85">{BRAND.founder}</dd></div>
-            <div><dt className="inline">Email: </dt><dd className="inline select-all text-white/85">{BRAND.email}</dd></div>
+            <div><dt className="inline">Email: </dt><dd className="inline"><a href={`mailto:${BRAND.email}`} className="text-white/85 underline-offset-2 hover:underline">{BRAND.email}</a></dd></div>
             <div><dd className="inline">Serving {BRAND.region} service trades: {BRAND.cities.join(", ")}, and surrounding communities</dd></div>
           </dl>
         </div>
