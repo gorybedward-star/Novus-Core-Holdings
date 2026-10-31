@@ -17,6 +17,8 @@ src/lib/lead.ts       Form validation + submit to /api/lead
 src/lib/analytics.ts  Conversion events -> window.dataLayer / gtag
 api/lead.ts           Server: spam checks, validation, GoHighLevel API or webhook
 docs/GOHIGHLEVEL.md   GoHighLevel setup and lead workflow
+docs/GOOGLE_SHEETS.md Free interim lead capture (Google Sheet + email)
+integrations/         Google Apps Script for the Sheets option
 docs/LAUNCH.md        Credentials needed, pre-launch QA, post-launch tests
 scripts/build-preview.mjs  Builds single-file preview pages into ./preview
 ```
@@ -39,7 +41,9 @@ npm run build        # type-check + production build into dist/
 5. **Settings → Domains**: add your domain (e.g. `novuscoreholdings.com`) and follow the DNS instructions.
 6. The site URL is set to https://novus-core-holdings.vercel.app. If you add a custom domain later, replace it in `index.html` and `ALLOWED_ORIGINS`, then push.
 
-Until step 3 is done, the form shows a clearly marked **Development mode** notice and never claims the request was received.
+No GoHighLevel yet? Use the free Google Sheets + email option instead: `docs/GOOGLE_SHEETS.md`.
+
+Until step 3 (or the Sheets setup) is done, the form shows a clearly marked **Development mode** notice and never claims the request was received.
 
 Other hosts: Netlify or Cloudflare Pages work too. Move `api/lead.ts` into that host's function format (the handler logic is plain `fetch` calls and needs no changes beyond the request/response wrapper).
 
