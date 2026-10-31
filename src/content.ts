@@ -3,7 +3,8 @@
 
 export const BRAND = {
   name: "Novus Core Holdings",
-  system: "The Local Growth Engine",
+  division: "Business Growth & Operations",
+  system: "Local Growth Engine",
   tagline: "Get Found. Get Chosen. Get Booked.",
   legalEntity: "Novus Core Holdings, LLC",
   founder: "Gory Bedward",
@@ -214,14 +215,14 @@ export const SCOPE_DISCLAIMER =
   "Advertising spend, additional software usage fees, onsite filming, and custom website development are not included unless separately agreed. Deliverables require appropriate client access and approvals. No specific rankings, lead counts, or revenue results are guaranteed.";
 
 export const SCORECARD_AREAS = [
-  "Google visibility and business profile",
-  "Online reputation and customer trust",
-  "Website clarity and conversion opportunities",
-  "Customer inquiry and follow-up process",
+  "Google visibility",
+  "Online reputation",
+  "Website conversion opportunities",
+  "Customer inquiry and follow-up processes",
 ];
 
 export const SCORECARD_RECEIVES = [
-  "A concise one-page assessment",
+  "A free one-page assessment covering all four areas",
   "Three prioritized improvement recommendations",
   "An optional 15-minute review conversation",
 ];

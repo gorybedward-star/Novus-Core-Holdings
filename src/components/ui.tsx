@@ -79,9 +79,9 @@ export function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
         }`}
         style={{ fontStretch: "112%" }}
       >
-        Novus Core
-        <span className={`mt-1 block text-[0.62rem] font-semibold tracking-[0.28em] ${tone === "dark" ? "text-char-muted" : "text-muted"}`} style={{ fontStretch: "100%" }}>
-          Holdings
+        Novus Core Holdings
+        <span className={`mt-1 block text-[0.6rem] font-semibold normal-case tracking-[0.14em] ${tone === "dark" ? "text-char-muted" : "text-muted"}`} style={{ fontStretch: "100%" }}>
+          BUSINESS GROWTH &amp; OPERATIONS
         </span>
       </span>
     </span>

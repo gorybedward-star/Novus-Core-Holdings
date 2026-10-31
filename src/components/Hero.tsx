@@ -24,10 +24,15 @@ export function Hero() {
       />
       <Container className="relative grid items-center gap-12 pb-16 pt-10 md:pb-24 md:pt-16 lg:grid-cols-[1.08fr_1fr] lg:gap-14">
         <div className="min-w-0 motion-safe:animate-rise">
-          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-volt" aria-hidden />
-            Service trades · {BRAND.region}
-          </p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <p className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted">
+              <span className="h-1.5 w-1.5 rounded-full bg-volt" aria-hidden />
+              <span>
+                Introducing <span className="text-volt">{BRAND.system}</span>
+              </span>
+            </p>
+            <p className="font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink">{BRAND.tagline}</p>
+          </div>
 
           <h1 className="mt-6 font-display text-[2.6rem] font-extrabold leading-[0.98] tracking-[-0.025em] text-ink [text-wrap:balance] sm:text-[3.4rem] lg:text-[4.1rem]" style={{ fontStretch: "106%" }}>
             Your next customer is looking. Will they find <span className="text-volt">you</span>, or your competitor?
@@ -35,7 +40,7 @@ export function Hero() {
 
           <p className="mt-6 max-w-[38rem] text-[1.12rem] leading-relaxed text-muted sm:text-[1.2rem]">
             We help service trade businesses get discovered, build trust, and turn more customer inquiries into booked
-            appointments, with one streamlined growth system: the Local Growth Engine.
+            appointments. Local Growth Engine is our customer acquisition and follow-up system, built for {BRAND.region}.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

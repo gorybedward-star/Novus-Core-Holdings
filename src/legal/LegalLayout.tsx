@@ -8,8 +8,8 @@ export function LegalLayout({ title, updated, children }: { title: string; updat
     <>
       <header className="border-b border-line bg-white">
         <Container className="flex h-16 items-center justify-between">
-          <a href="index.html" aria-label="Novus Core Holdings home"><Wordmark /></a>
-          <a href="index.html#scorecard" className="text-[0.9rem] font-semibold text-volt">Free Growth Scorecard</a>
+          <a href="./" aria-label="Novus Core Holdings home"><Wordmark /></a>
+          <a href="./#scorecard" className="text-[0.9rem] font-semibold text-volt">Free Growth Scorecard</a>
         </Container>
       </header>
       <main className="bg-white py-14 md:py-20">
