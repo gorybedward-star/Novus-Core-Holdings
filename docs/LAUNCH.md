@@ -24,7 +24,7 @@ Recommended: a domain email (e.g. gory@yourdomain.com via Google Workspace) inst
 
 ## Pre-launch QA checklist
 
-- [ ] Replace all `https://www.example.com` in `index.html` with the real domain
+- [x] Site URL set to https://novus-core-holdings.vercel.app (update `index.html` again if you add a custom domain)
 - [ ] Privacy Policy and Terms reviewed, dates filled in, `[bracketed]` placeholders resolved, draft banner removed (`src/legal/LegalLayout.tsx`), `noindex` removed from `privacy.html` / `terms.html`
 - [ ] GoHighLevel env vars set in Vercel; test submission creates contact + tags + note + opportunity
 - [ ] Test submission WITH and WITHOUT marketing consent; confirm correct tag and that no marketing workflow fires for `marketing-consent-no`

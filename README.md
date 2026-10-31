@@ -37,7 +37,7 @@ npm run build        # type-check + production build into dist/
 3. In **Settings → Environment Variables**, add the GoHighLevel variables from `.env.example` (see `docs/GOHIGHLEVEL.md`). Do not prefix them with `VITE_`.
 4. Deploy. Every push to `main` redeploys automatically.
 5. **Settings → Domains**: add your domain (e.g. `novuscoreholdings.com`) and follow the DNS instructions.
-6. Replace every `https://www.example.com` in `index.html` and `ALLOWED_ORIGINS` with the real domain, then push.
+6. The site URL is set to https://novus-core-holdings.vercel.app. If you add a custom domain later, replace it in `index.html` and `ALLOWED_ORIGINS`, then push.
 
 Until step 3 is done, the form shows a clearly marked **Development mode** notice and never claims the request was received.
 
