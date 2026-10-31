@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    font-size: 16px;
+    margin: 0;
+  }
+  /* Paint the band above the sticky header on notched phones. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 50;
+    background: #fff;
+  }
+  :focus-visible {
+    outline: 3px solid #2150ff;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .bg-volt :focus-visible,
+  .bg-char :focus-visible,
+  .bg-ink :focus-visible {
+    outline-color: #fff;
+  }
+  [hidden] {
+    display: none !important;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .px-gutter {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  @media (min-width: 768px) {
+    .px-gutter {
+      padding-left: max(32px, env(safe-area-inset-left, 0px));
+      padding-right: max(32px, env(safe-area-inset-right, 0px));
+    }
+  }
+}
+
+/* A soft pulse that travels down the journey line in the hero dashboard. */
+.lge-flow {
+  background-size: 100% 200%;
+  animation: lge-flow 3.2s linear infinite;
+}
+@keyframes lge-flow {
+  from { background-position: 0 100%; }
+  to { background-position: 0 -100%; }
+}
+
+/* Long-form legal pages */
+.legal { @apply text-[1rem] leading-relaxed text-ink/85; }
+.legal > * + * { margin-top: 1rem; }
+.legal h2 { @apply mt-10 font-display text-[1.3rem] font-bold text-ink; }
+.legal ul { @apply list-disc pl-6; }
+.legal li + li { margin-top: 0.35rem; }
